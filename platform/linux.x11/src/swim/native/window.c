@@ -159,8 +159,7 @@ void swim_native_window_set_visible(void * native_window, int visible) {
 
 void swim_native_window_set_fullscreen(void * native_window, int fullscreen) {}
 
-void swim_native_window_handle_events(void * native_window,
-                                      swim_window_event_handlers * handlers) {
+void swim_native_window_handle_events(void * native_window, swim_window * window) {
     swim_native_window_x11 * x11 = native_window;
     XEvent event;
 
