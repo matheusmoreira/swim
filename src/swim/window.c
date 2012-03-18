@@ -99,7 +99,7 @@ void swim_window_set_event_handlers(swim_window * window, swim_window_event_hand
 }
 
 void swim_window_handle_events(swim_window * window) {
-    swim_native_window_handle_events(window->native_window, window->event_handlers);
+    swim_native_window_handle_events(window->native_window, window);
 }
 
 void swim_window_stop_handling_events(swim_window * window) {
