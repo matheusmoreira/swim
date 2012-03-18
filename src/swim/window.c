@@ -1,11 +1,6 @@
 #include <swim/stdlib.h>
 #include <swim/window.h>
-
-#if defined(SWIM_PLATFORM_LINUX) && defined(SWIM_PLATFORM_LINUX_X11)
-    #include "native/window.x11.c"
-#else
-    #error "Platform not supported"
-#endif
+#include <swim/native/window.h>
 
 /* Window interface implementation */
 
