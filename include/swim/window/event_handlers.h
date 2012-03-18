@@ -7,7 +7,7 @@
 /**
  * Pointers to functions that handle window events.
  */
-typedef struct {
+typedef struct swim_window_event_handlers {
     swim_window_keyboard_event_handler key_pressed,
                                        key_released;
     swim_window_mouse_event_handler button_pressed,

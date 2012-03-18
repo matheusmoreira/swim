@@ -1,7 +1,7 @@
 #ifndef SWIM_KEYBOARD_KEY_H
 #define SWIM_KEYBOARD_KEY_H
 
-typedef enum {
+typedef enum swim_keyboard_key {
     swim_keyboard_key_unknown = 0,
 
     swim_keyboard_key_a, swim_keyboard_key_b, swim_keyboard_key_c,

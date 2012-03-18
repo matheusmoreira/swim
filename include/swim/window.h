@@ -6,7 +6,7 @@
 /**
  * A window with associated event handlers.
  */
-typedef struct {
+typedef struct swim_window {
     swim_window_event_handlers * event_handlers;
     void * native_window;
 } swim_window;
