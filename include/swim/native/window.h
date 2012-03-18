@@ -52,6 +52,8 @@ extern void swim_native_window_set_name(void * native_window, char * name);
 
 extern void swim_native_window_set_visible(void * native_window, int visible);
 
+extern void swim_native_window_set_fullscreen(void * native_window, int fullscreen);
+
 /**
  * Intercepts window events and calls the appropriate callbacks.
  *
