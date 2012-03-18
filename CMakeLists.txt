@@ -31,7 +31,7 @@ set(SWIM_PLATFORM_SRC_DIR ${SWIM_PLATFORM_DIR}/${SWIM_PLATFORM}/src)
 
 # Run platform-specific build instructions,
 # which should set SWIM_PLATFORM_LIBRARY_DEPENDENCIES
-include(${SWIM_PLATFORM_DIR}/${SWIM_PLATFORM}.cmake)
+include(${SWIM_PLATFORM_DIR}/${SWIM_PLATFORM}/build.cmake)
 
 # Make platform-specific files accessible
 include_directories(${SWIM_PLATFORM_INCLUDE_DIR})
