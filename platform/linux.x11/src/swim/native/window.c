@@ -6,6 +6,7 @@
 #include <swim/native/window.h>
 #include <swim/keyboard_key.h>
 #include <swim/mouse_button.h>
+#include <swim/window/event_handlers.h>
 
 /**
  * X11 window data.
@@ -161,9 +162,11 @@ void swim_native_window_set_fullscreen(void * native_window, int fullscreen) {}
 
 void swim_native_window_handle_events(void * native_window, swim_window * window) {
     swim_native_window_x11 * x11 = native_window;
+    swim_window_event_handlers * handlers = NULL;
     XEvent event;
 
-    if (handlers == NULL) { return; }
+    if (window == NULL) { return; }
+    if ((handlers = window->event_handlers) == NULL) { return; }
 
     while (XCheckIfEvent(x11->display, &event, is_from, (XPointer) x11->window)) {
         switch (event.type) {
