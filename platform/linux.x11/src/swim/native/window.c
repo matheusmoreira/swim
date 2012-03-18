@@ -1,4 +1,5 @@
 #include <X11/Xlib.h>
+#include <X11/Xatom.h>
 #include <X11/keysym.h>
 
 #include <swim/stdlib.h>
@@ -13,6 +14,7 @@ typedef struct {
     Display * display; /** Pointer to the display connection. */
     int screen; /** Window's screen. */
     Window window; /** The window. */
+    Atom close_event_atom; /** Atom that identifies the window close event. */
 } swim_native_window_x11;
 
 /* Helper function prototypes */
@@ -45,6 +47,9 @@ void * swim_native_window_new(char * name, int x, int y, unsigned int w, unsigne
                                       RootWindow(x11->display,
                                                  x11->screen),
                                       x, y, w, h, 0, white, white);
+
+    x11->close_event_atom = XInternAtom(x11->display, "WM_DELETE_WINDOW", 0);
+    XSetWMProtocols(x11->display, x11->window, &x11->close_event_atom, 1);
 
     return x11;
 }
