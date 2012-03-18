@@ -1,6 +1,7 @@
 #ifndef SWIM_WINDOW_EVENT_HANDLERS_H
 #define SWIM_WINDOW_EVENT_HANDLERS_H
 
+#include <swim/window/event_handler.h>
 #include <swim/window/keyboard_event_handler.h>
 #include <swim/window/mouse_event_handler.h>
 
@@ -8,6 +9,7 @@
  * Pointers to functions that handle window events.
  */
 typedef struct swim_window_event_handlers {
+    swim_window_event_handler window_closed;
     swim_window_keyboard_event_handler key_pressed,
                                        key_released;
     swim_window_mouse_event_handler button_pressed,
