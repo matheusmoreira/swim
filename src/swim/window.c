@@ -1,4 +1,5 @@
 #include <swim/stdlib.h>
+#include <swim/window/event_handlers.h>
 #include <swim/window.h>
 #include <swim/native/window.h>
 
