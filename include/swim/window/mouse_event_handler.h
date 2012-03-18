@@ -3,6 +3,8 @@
 
 #include <swim/mouse_button.h>
 
+typedef struct swim_window swim_window;
+
 /**
  * Pointer to a function that handles the keyboard events of a window.
  */
