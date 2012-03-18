@@ -212,6 +212,11 @@ void swim_native_window_handle_events(void * native_window, swim_window * window
     }
 }
 
+void swim_native_window_stop_handling_events(void * native_window) {
+    swim_native_window_x11 * x11 = native_window;
+    x11->event_loop_running = 0;
+}
+
 /* Helper function implementations */
 
 static inline XWindowAttributes
