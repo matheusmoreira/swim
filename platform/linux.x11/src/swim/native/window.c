@@ -45,6 +45,8 @@ void * swim_native_window_new(char * name, int x, int y, unsigned int w, unsigne
                                       RootWindow(x11->display,
                                                  x11->screen),
                                       x, y, w, h, 0, white, white);
+
+    return x11;
 }
 
 void swim_native_window_destroy(void * native_window) {
@@ -102,6 +104,14 @@ void swim_native_window_set_y(void * native_window, int y) {
     swim_native_window_set_position(native_window, swim_native_window_x(native_window), y);
 }
 
+void swim_native_window_set_width(void * native_window, unsigned int w) {
+    swim_native_window_set_size(native_window, w, swim_native_window_height(native_window));
+}
+
+void swim_native_window_set_height(void * native_window, unsigned int h) {
+    swim_native_window_set_size(native_window, swim_native_window_width(native_window), h);
+}
+
 void swim_native_window_set_position(void * native_window, int x, int y) {
     swim_native_window_x11 * x11 = native_window;
 
@@ -141,6 +151,8 @@ void swim_native_window_set_visible(void * native_window, int visible) {
     }
     XFlush(x11->display);
 }
+
+void swim_native_window_set_fullscreen(void * native_window, int fullscreen) {}
 
 void swim_native_window_handle_events(void * native_window,
                                       swim_window_event_handlers * handlers) {
