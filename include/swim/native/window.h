@@ -57,9 +57,9 @@ extern void swim_native_window_set_fullscreen(void * native_window, int fullscre
 /**
  * Intercepts window events and calls the appropriate callbacks.
  *
- * This function returns immediately if handlers is NULL.
+ * This function returns immediately if either window or its event handlers is
+ * NULL.
  */
-extern void swim_native_window_handle_events(void * native_window,
-                                             swim_window_event_handlers * handlers);
+extern void swim_native_window_handle_events(void * native_window, swim_window * window);
 
 #endif /* SWIM_NATIVE_WINDOW_H */
