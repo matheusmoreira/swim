@@ -3,10 +3,11 @@
 #include <X11/keysym.h>
 
 #include <swim/stdlib.h>
-#include <swim/native/window.h>
 #include <swim/keyboard_key.h>
 #include <swim/mouse_button.h>
 #include <swim/window/event_handlers.h>
+#include <swim/window.h>
+#include <swim/native/window.h>
 
 /**
  * X11 window data.
