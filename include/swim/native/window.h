@@ -1,7 +1,7 @@
 #ifndef SWIM_NATIVE_WINDOW_H
 #define SWIM_NATIVE_WINDOW_H
 
-#include <swim/window/event_handlers.h>
+typedef struct swim_window swim_window;
 
 /**
  *
