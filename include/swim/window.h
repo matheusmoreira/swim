@@ -1,7 +1,7 @@
 #ifndef SWIM_WINDOW_H
 #define SWIM_WINDOW_H
 
-typedef struct swim_window_event_handlers swim_window_event_handlers;
+#include <swim/window/event_handlers.h>
 
 /**
  * A window with associated event handlers.
