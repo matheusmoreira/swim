@@ -17,6 +17,7 @@ typedef struct {
     int screen; /** Window's screen. */
     Window window; /** The window. */
     Atom close_event_atom; /** Atom that identifies the window close event. */
+    int event_loop_running; /** Whether the window's event loop is running. */
 } swim_native_window_x11;
 
 /* Helper function prototypes */
@@ -169,34 +170,43 @@ void swim_native_window_handle_events(void * native_window, swim_window * window
     if (window == NULL) { return; }
     if ((handlers = window->event_handlers) == NULL) { return; }
 
-    while (XCheckIfEvent(x11->display, &event, is_from, (XPointer) x11->window)) {
-        switch (event.type) {
-            /* Window is about to be destroyed by X */
-            case DestroyNotify: {
-                break;
-            }
-            /* Window was closed by the user */
-            /*case ClientMessage: {
-                if (xevent.xclient.format == 32 &&
-                    xevent.xclient.data.l[0] == (long) event->close_event_atom) {
+    x11->event_loop_running = 1;
+
+    while (x11->event_loop_running) {
+        while (XCheckIfEvent(x11->display, &event, is_from, (XPointer) x11->window)) {
+            switch (event.type) {
+                /* Window is about to be destroyed by X */
+                case DestroyNotify: {
+                    break;
                 }
-                break;
-            }*/
-            /* Key was pressed */
-            case KeyPress: {
-                if (handlers->key_pressed != NULL) {
-                    handlers->key_pressed(convert_to_keyboard_key(event.xkey),
-                                          handlers->context);
+                /* Window was closed by the user */
+                case ClientMessage: {
+                    if (event.xclient.format == 32
+                        && event.xclient.data.l[0] == (long) x11->close_event_atom) {
+                        if (handlers->window_closed != NULL) {
+                            handlers->window_closed(window, handlers->context);
+                        }
+                    }
+                    break;
                 }
-                break;
-            }
-            /* Key was released */
-            case KeyRelease: {
-                if(handlers->key_released != NULL) {
-                    handlers->key_released(convert_to_keyboard_key(event.xkey),
-                                           handlers->context);
+                /* Key was pressed */
+                case KeyPress: {
+                    if (handlers->key_pressed != NULL) {
+                        handlers->key_pressed(window,
+                                              convert_to_keyboard_key(event.xkey),
+                                              handlers->context);
+                    }
+                    break;
                 }
-                break;
+                /* Key was released */
+                case KeyRelease: {
+                    if(handlers->key_released != NULL) {
+                        handlers->key_released(window,
+                                               convert_to_keyboard_key(event.xkey),
+                                               handlers->context);
+                    }
+                    break;
+                }
             }
         }
     }
